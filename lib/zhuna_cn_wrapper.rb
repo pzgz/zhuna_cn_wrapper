@@ -1,0 +1,6 @@
+require "zhuna_cn_wrapper/version"
+require "zhuna_cn_wrapper/config"
+require "zhuna_cn_wrapper/result"
+require "zhuna_cn_wrapper/api_base"
+require "zhuna_cn_wrapper/city"
+require "zhuna_cn_wrapper/hotel"
