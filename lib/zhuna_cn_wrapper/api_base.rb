@@ -16,13 +16,15 @@ module ZhunaCnWrapper
     def parse_result(resp)
       json_result = ActiveSupport::JSON.decode(resp) rescue nil
       result = ZhunaCnWrapper::Result.new
-      result.total_rows = json_result.fetch('retHeader', {}).fetch('totalput', nil)
-      result.page_size = json_result.fetch('retHeader', {}).fetch('pagesize', nil)
-      result.current_page = json_result.fetch('retHeader', {}).fetch('page', nil)
-      result.total_pages = json_result.fetch('retHeader', {}).fetch('totalpg', nil)
-      result.return_flag = json_result.fetch('retmsg', nil)
-      result.return_code = json_result.fetch('retcode', nil)
-      result.data = json_result.fetch('reqdata', nil)
+      if json_result
+        result.total_rows = json_result.fetch('retHeader', {}).fetch('totalput', nil)
+        result.page_size = json_result.fetch('retHeader', {}).fetch('pagesize', nil)
+        result.current_page = json_result.fetch('retHeader', {}).fetch('page', nil)
+        result.total_pages = json_result.fetch('retHeader', {}).fetch('totalpg', nil)
+        result.return_flag = json_result.fetch('retmsg', nil)
+        result.return_code = json_result.fetch('retcode', nil)
+        result.data = json_result.fetch('reqdata', nil)
+      end
       result
     end
   end
